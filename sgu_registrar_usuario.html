@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>SGU-REGISTRO DE USUARIO</title>
+      <link rel="stylesheet" href="styleGlobal.css">
+      <link rel="stylesheet" href="stylesNewUser.css">
+      <link rel="icon" href="img/logo.png" type="image/x-icon">
+      <!-- <link rel="stylesheet" href="styleDrop.cvss">  -->
+      <script src="https://kit.fontawesome.com/c4cf362cd6.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+      <!-- <script src=UpLoadList.js defer></script> -->
+      <script src="ScriptLoadNameTable.js" defer></script>
+      <!-- <script src="ArrastrarSoltar.js" defer></script> -->
+      <script src=LogOutSession.js defer></script>    
+      <script src="LoadAvatarAndAccess.js" defer></script>
+      <script src="RegistrarUsuario.js" defer></script>
+      <script src="homelink.js" defer></script>
+      <script src="loadQRCode.js" defer></script> 
+      <script src="get_last_log.js" defer></script>
+      <script src=Long_Polling.js defer></script>  
+
+   </head>
+   <body>
+      <div class="contenedor">
+         <div id="message">
+            <p id="lastLogValue">Nuevo valor de Last_Log:</p>
+         </div>
+         <header class="cabecera">
+            <!-- <form name="formulario" method="get">                  -->
+            <input id="EntryBusqueda" type="text" name="nombre" disabled 
+               style="pointer-events: auto; opacity: 1;" 
+               onkeydown="copiarYSimularEnter(event)">
+            <!-- </form> -->
+            <button class="MenuSecCabecera" > 
+            <i class="fa-solid fa-bars fa-2xl"></i> 
+            </button>
+            <div id="logContainer">
+               <div id="lastLog">
+                  <h2>Último acceso</h2>
+                  <span id="lastLogDate">No disponible</span>
+               </div>
+            </div>
+            <button class="LogOutCabecera" > 
+            <i class="fa-solid fa-right-to-bracket fa-2xl"></i>
+            </button>
+            <div id="loading-container" style="display: none;">
+               <div id="spinner"></div>
+            </div>
+            <img src="img/logo.png"  class="LogoCabecera" alt="SGULogo" />
+            <h1 class="TituloCabecera">SISTEMA DE GESTION <br> &nbsp &nbsp UNIVERSITARIA</h1>
+         </header>
+         <main>
+            <div id="MenuNav">
+               <div id="UserInfo">
+                  <img src="img/AvatarDefault.jpg" alt="Descripción de la imagen" class="imagen-redonda">
+                  <h1 id="TypeUser">No disponible</h1>
+                  <h2 id="NameUser">No disponible</h2>
+               </div>
+               <ul class="nav">
+                  <li id="homeLink">
+                     <a href="sgu_cargar_listados.html" class="open-link" target="_blank">HOME<i class="fa-solid fa-house"></i></a>
+                  </li>
+                  <!-- <li><a href="listadosWin.html" target="_blank">DESCARGAR LISTAS <i class="fa-solid fa-file-import"></i></a></li>
+                     <li><a href="CargarListados.html" target="_blank">CARGAR LISTAS <i class="fa-solid fa-calendar-week"></i></a></li>
+                     <li><a href="Index.html" target="_blank">HOME <i class="fa-solid fa-calendar-week"></i></a></li> -->
+                  <!-- <li><a href="listadosWin.html" target="_blank">DESCARGAR LISTAS <i class="fa-solid fa-file-import"></i></a></li> -->
+                  <!-- <li><a href="Index.html" target="">DASHBOARD <i class="fa-solid fa-calendar-week"></i></a></li> -->
+               </ul>
+            </div>
+            <div id="ListdWin">
+               <!-- <form method="post" id="form-alumno" class="form-alumno"> -->
+               <span id="titelCRUDAlumno" class="boton">REGISTRO DE USUARIO</span>
+               <div class="container_user">
+                  <!-- <div class="logo-container">
+                     <img src="img/LogoRegistro.PNG" class="LogoLoging" alt="Logo SGU"/>
+                     </div> -->
+                  <div class="form-group">
+                     <label for="userName">Nombre de Usuario:</label>
+                     <input type="text" id="userName" name="userName" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="passwordUser">Clave de Usuario:</label>
+                     <input type="text" id="passwordUser" name="passwordUser" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="email">Correo Electrónico:</label>
+                     <input type="email" id="email" name="email" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="firstName">Primer Nombre:</label>
+                     <input type="text" id="firstName" name="firstName" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="secondName">Segundo Nombre:</label>
+                     <input type="text" id="secondName" name="secondName">
+                  </div>
+                  <div class="form-group">
+                     <label for="firstLastName">Primer Apellido:</label>
+                     <input type="text" id="firstLastName" name="firstLastName" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="secondLastName">Segundo Apellido:</label>
+                     <input type="text" id="secondLastName" name="secondLastName">
+                  </div>
+                  <div class="form-group">
+                     <label for="roleUser">Rol de Usuario:</label>
+                     <select id="roleUser" name="roleUser" required>
+                        <option value="prof">Profesor</option>
+                        <option value="admin">Analista</option>
+                        <option value="sup">Superusuario</option>
+                     </select>
+                  </div>
+                  <div class="form-group">
+                     <label for="telephoneNumber">Número Telefónico:</label>
+                     <input type="tel" id="telephoneNumber" name="telephoneNumber">
+                  </div>
+                  <div class="form-group">
+                     <label for="userBio">Información Adicional:</label>
+                     <textarea id="userBio" name="userBio"></textarea>
+                  </div>
+                  <div class="form-group radio-group">
+                     <input type="radio" id="masculino" name="genero" value="M">
+                     <label for="masculino">Masculino</label>
+                     <input type="radio" id="femenino" name="genero" value="F">
+                     <label for="femenino">Femenino</label>
+                  </div>
+                  <div class="form-group">
+                     <button type="button" id="submitButton">Registrar</button>
+                     <button type="button" id="clearButton" style="background-color: red; color: white; border: none; padding: 10px 20px; cursor: pointer; margin-top: 10px;">
+                     Limpiar
+                     </button>
+                  </div>
+               </div>
+            </div>
+            <!-- </form>  -->
+      </div>
+      </main>
+      </div>
+      <input type="hidden" id="username_Log" value="">
+      <input type="hidden" id="password_Log" value="">
+      <input type="hidden" id="last_log_user" value="">
+   </body>
+</html>

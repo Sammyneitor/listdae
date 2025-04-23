@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>SGU-HOME</title>
+      <link rel="icon" href="img/logo.png" type="image/x-icon">
+      <link rel="stylesheet" href="styleGlobal.css">
+      <!-- <link rel="stylesheet" href="styleDrop.css">  -->
+      <script src="https://kit.fontawesome.com/c4cf362cd6.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+      <!-- <script src=UpLoadList.js defer></script> -->
+      <script src="ScriptLoadNameTable.js" defer></script>
+      <!-- <script src="ArrastrarSoltar.js" defer></script> -->
+      <script src=LogOutSession.js defer></script>
+      <script src="LoadAvatarAndAccess.js" defer></script>
+      <script src="loadQRCode.js" defer></script> 
+      <script src="get_last_log.js" defer></script>
+      <script src=Long_Polling.js defer></script>  
+
+   </head>
+   <body>
+      <div class="contenedor">
+         <div id="message">
+            <p id="lastLogValue">Nuevo valor de Last_Log:</p>
+         </div>
+         <header class="cabecera">
+            <form name="formulario" method="get"> 
+               <input id="EntryBusqueda" type="text" name="nombre" placeholder="Buscar...">
+            </form>
+            <button class="MenuSecCabecera" > 
+            <i class="fa-solid fa-bars fa-2xl"></i> 
+            </button>
+            <div id="logContainer">
+               <div id="lastLog">
+                  <h2>Último acceso</h2>
+                  <span id="lastLogDate">No disponible</span>
+               </div>
+            </div>
+            <button class="LogOutCabecera" > 
+            <i class="fa-solid fa-right-to-bracket fa-2xl"></i>
+            </button>
+            <div id="loading-container" style="display: none;">
+               <div id="spinner"></div>
+            </div>
+            <img src="img/logo.png"  class="LogoCabecera" alt="SGULogo" />
+            <h1 class="TituloCabecera">SISTEMA DE GESTION <br> &nbsp &nbsp UNIVERSITARIA</h1>
+         </header>
+         <main>
+            <div id="MenuNav">
+               <div id="UserInfo">
+                  <img src="img/AvatarDefault.jpg" alt="Descripción de la imagen" class="imagen-redonda">
+                  <h1 id="TypeUser">No disponible</h1>
+                  <h2 id="NameUser">No disponible</h2>
+               </div>
+               <ul class="nav">
+                  <li><a href="sgu_descargar_listados.html" target="_blank">DESCARGAR LISTAS<i class="fa-solid fa-file-arrow-down"></i></a></li>
+                  <li><a href="sgu_cargar_listados.html" target="_blank">CARGAR LISTAS <i class="fa-solid fa-upload"></i></a></li>
+                  <li><a href="sgu_gestion_alumno.html" target="_blank">REGISTRAR ALUMNO  <i class="fa-solid fa-user-plus"></i></a></li>
+                  <li><a href="sgu_registrar_usuario.html" target="_blank">GESTIONAR USUARIO <i class="fa-solid fa-user-tie"></i></a></li>
+               </ul>
+            </div>
+            <div id="ListdWin">
+               <div class="vistoso" style="background-image: url('https://www.t-mobile.com/dialed-in/_admin/uploads/2023/06/four-phones-showing-messaging-apps-1280x640.png');" class="video-fondo">
+                  <span class="texto-normal">CHAT ONLINE</span>
+                  <span class="texto-hover">¡ Conéctate en tiempo real con todos los departamentos y ahorra tiempo. <br> Comparte información, dudas, documentos y vuelvete más productivo!</span>
+               </div>
+               <div class="vistoso" style="background-image: url('https://img.freepik.com/vector-premium/grupos-compradores-exploran-puestos-coloridos-suministros-escolares-personalizables-temporada-mayor-afluencia_538213-147441.jpg'); margin-top: 30px;" class="video-fondo">
+                  <span class="texto-normal">SERVICIOS ESTUDIANTILES</span>
+                  <span class="texto-hover">¡ Accede fácilmente a tu historial académico, solicita<br> constancias y realiza trámites administrativos sin complicaciones!</span>
+               </div>
+               <div class="vistoso" style="background-image: url('https://img.freepik.com/vector-premium/ilustracion-plana-diseno-receptivo_203633-3647.jpg'); margin-top: 30px;" class="video-fondo">
+                  <span class="texto-normal">PREINSCRIPCIONES</span>
+                  <span class="texto-hover">¡ Inscríbete en tus carreras preferidas de manera rápida y sencilla, <br> recibiendo orientación personalizada sobre las opciones disponibles!</span>
+               </div>
+               <div class="vistoso" style="background-image: url('https://static.vecteezy.com/system/resources/previews/002/223/296/non_2x/online-advertising-flat-illustration-vector.jpg'); margin-top: 30px;" class="video-fondo">
+                  <span class="texto-normal">Y MUCHO MÁS...</span>
+                  <span class="texto-hover">¡PROXIMAMENTE!</span>
+               </div>
+            </div>
+         </main>
+      </div>
+      <input type="hidden" id="username_Log" value="">
+      <input type="hidden" id="password_Log" value="">
+      <input type="hidden" id="last_log_user" value="">
+   </body>
+</html>

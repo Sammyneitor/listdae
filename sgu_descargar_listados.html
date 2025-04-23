@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>SGU-DESCARGA DE LISTADOS</title>
+      <!-- Cambiar el icono de la página -->
+      <link rel="icon" href="img/logo.png" type="image/x-icon">
+      <link rel="stylesheet" href="styleGlobal.css">
+      <script src="https://kit.fontawesome.com/c4cf362cd6.js" crossorigin="anonymous"></script>
+      <script src="LoadList.js"></script>
+      <script src="ShowList.js" defer></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="scriptDashboardList.js" defer></script>
+      <script src="ClearListTable.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+      <script src="CrearPDF.js"></script>
+      <script src="CrearEXCEL.js"></script>
+      <script src="SortList.js" defer></script> 
+      <script src="LoadMaterias.js" defer></script> 
+      <script src="LoadDateActSeccionList.js" defer></script>
+      <script src="FiltrarTablaDate.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+      <script src="EnviarPorCorreo.js"></script>
+      <script src="ActCarreraSelec.js"></script>
+      <script src="LogOutSession.js" defer></script>
+      <script src="LoadAvatarAndAccess.js" defer></script>
+      <script src="ScriptLoadWinList.js" defer></script>
+      <script src="OpenLinkNewWithOutLS.js" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+      <script src="homelink.js" defer></script>
+      <script src="get_last_log.js" defer></script>
+      <script src=Long_Polling.js defer></script>  
+
+   </head>
+   <body>
+      <div class="contenedor">
+         <header class="cabecera">
+            <form name="formulario" method="get"> 
+               <input id="EntryBusqueda" type="text" name="nombre" placeholder="Buscar...">
+            </form>
+            <button class="MenuSecCabecera"> 
+            <i class="fa-solid fa-bars fa-2xl"></i> 
+            </button>
+            <div id="logContainer">
+               <div id="lastLog">
+                  <h2>Último acceso</h2>
+                  <span id="lastLogDate">No disponible</span>
+               </div>
+            </div>
+            <button class="LogOutCabecera" title="Cerrar Sesión"> 
+            <i class="fa-solid fa-right-to-bracket fa-2xl"></i>
+            </button>
+            <div id="loading-container" style="display: none;">
+               <div id="spinner"></div>
+            </div>
+            <img src="img/logo.png" class="LogoCabecera" alt="SGULogo" />
+            <h1 class="TituloCabecera">SISTEMA DE GESTION <br> &nbsp &nbsp UNIVERSITARIA</h1>
+         </header>
+         <main>
+            <div id="MenuNav">
+               <div id="UserInfo">
+                  <img src="img/AvatarDefault.jpg" alt="Descripción de la imagen" class="imagen-redonda">
+                  <h1 id="TypeUser">No disponible</h1>
+                  <h2 id="NameUser">No disponible</h2>
+               </div>
+               <ul class="nav">
+                  <!-- <li><a href="CargarListados.html" class="open-link" target="_blank">CARGAR LISTAS <i class="fa-solid fa-calendar-week"></i></a></li> -->
+                  <li>
+                     <a href="#">EXPORTAR <i class="fa-solid fa-file-export"></i> </a>
+                     <ul class="FirstSubMenu">
+                        <li><a href="#" onclick="generarPDF()">PDF </a></li>
+                        <li>
+                           <a href="#">DESCARGAR XLSX</a>
+                           <ul class="FirstSubMenu">
+                              <li><a href="#" onclick="exportarTablaExcel()">LISTADO DE ESTUDIANTES</a></li>
+                              <li><a href="#" onclick="exportarTablaExcelACT()">PREACTAS</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="#" onclick="enviarCorreo()">ENVIAR POR CORREO</a></li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="#">ELEGIR ESCUELA<i class="fa-solid fa-school-flag"></i></a>
+                     <ul class="FirstSubMenu" id="escuelasList">
+                        <li><a href="#" data-value="medicina" data-cod="117" data-escuela="MEDICINA" onclick="actualizarPlaceholder(this)" id="enlaceMedicina">MEDICINA</a></li>
+                        <li><a href="#" data-value="bioanalisis" data-cod="112" data-escuela="BIONALISIS" onclick="actualizarPlaceholder(this)">BIONALISIS</a></li>
+                        <li>
+                           <a href="#">ENFERMERIA</a>
+                           <ul class="FirstSubMenu">
+                              <li><a href="#" data-value="tsu_enfermeria" data-cod="157" data-escuela="ENFERMERIA" onclick="actualizarPlaceholder(this)">ENFERMERIA (TSU)</a></li>
+                              <li><a href="#" data-value="lic_enfermeria" data-cod="115" data-escuela="ENFERMERIA" onclick="actualizarPlaceholder(this)">ENFERMERIA (LIC)</a></li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="#">SALUD PUB. Y DESARR. SOC</a>
+                           <ul class="FirstSubMenu">
+                              <li><a href="#" data-value="tsu_regist_estad_salud" data-cod="166" data-escuela="SALUD PUB. Y DESARR. SOC" onclick="actualizarPlaceholder(this)">REG. y EST. DE SALUD (TSU)</a></li>
+                              <li><a href="#" data-value="tsu_terapia_psicosocial" data-cod="165" data-escuela="SALUD PUB. Y DESARR. SOC" onclick="actualizarPlaceholder(this)">TERAPIA PSICOSOCIAL (TSU)</a></li>
+                              <li><a href="#" data-value="lic_psicologia" data-cod="172" data-escuela="SALUD PUB. Y DESARR. SOC" onclick="actualizarPlaceholder(this)">PSICOLOGIA (LIC)</a></li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="#">CS. BIOMED. Y TEC.</a>
+                           <ul class="FirstSubMenu">
+                              <li><a href="#" data-value="tsu_imagenologia" data-cod="164" data-escuela="CS. BIOMED. Y TEC." onclick="actualizarPlaceholder(this)">IMAGENOLOGIA (TSU)</a></li>
+                              <li><a href="#" data-value="tsu_histotecnologia" data-cod="163" data-escuela="CS. BIOMED. Y TEC." onclick="actualizarPlaceholder(this)">HISTOTECNOLOGIA (TSU)</a></li>
+                              <li><a href="#" data-value="tsu_citotecnologia" data-cod="161" data-escuela="CS. BIOMED. Y TEC." onclick="actualizarPlaceholder(this)">CITOTECNOLOGIA (TSU)</a></li>
+                              <li><a href="#" data-value="tsu_tec_cardiopulmonar" data-cod="162" data-escuela="CS. BIOMED. Y TEC." onclick="actualizarPlaceholder(this)">TEC.CARDIOPULMONAR (TSU)</a></li>
+                              <li><a href="#" data-value="lic_fisioterapia" data-cod="171" data-escuela="CS. BIOMED. Y TEC." onclick="actualizarPlaceholder(this)">FISIOTERAPIA (LIC)</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li id="homeLink">
+                     <a href="#" class="open-link" target="">HOME<i class="fa-solid fa-house"></i></a>
+                  </li>
+               </ul>
+            </div>
+            <form id="formListSrc" name="formListSrc">
+               <div class="NroEstudiantesTotales">
+                  <i class="fa-solid fa-users fa-2xl"></i>
+                  <h2> <span class="ContadorDashboardList" id="DSBListEstudents"></span> Estudiantes Totales</h2>
+               </div>
+               <div class="PromedioAcademicoTotal">
+                  <i class="fa-solid fa-wave-square fa-2xl"></i>
+                  <h2> <span class="ContadorDashboardList"  id="DSBListEstudentsReg"></span> Estudiantes Regulares </h2>
+               </div>
+               <div class="NuevoIngresoTotales">
+                  <i class="fa-solid fa-user-plus fa-2xl"></i>
+                  <h2> <span class="ContadorDashboardList"  id="DSBListEstudentsNew"></span>Nuevos Ingresados</h2>
+               </div>
+               <span style="color: rgb(0, 0, 0); font-size: 15px; font-weight: bold; font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;">Listado de Alumnos</span>
+               <hr>
+               <button type="submit" id="BuscarListSrc" title="Buscar listado"> 
+               <i class="fa-solid fa-magnifying-glass"></i>Buscar
+               </button>
+               <button type="button" id="ClearListSrc" title="Limpiar tabla"> 
+               <i class="fa-solid fa-table-list"></i>Vaciar Lista
+               </button>
+               <button id="ClearInfoEstudiante" type="submit" title="Limpiar filtro">
+               <i class="fa-solid fa-trash fa-2xl "></i>
+               </button>
+               <select id='opcionesMateriaFormList' name='opcionesMateriaFormList' onchange='cargarDatosSeccion()' required>
+               </select>
+               <input type='text' placeholder='Codigo Asignatura' id='CodAsigSrc' name='CodAsigSrc' readonly>
+               <input type="text" id='CodAsigSrcForDate' name="CodAsigSrcForDate" style="visibility: hidden; display: none">
+               <select id="periodoFormList" name="periodoFormList" required>
+                  <option value="">--Seleccione Periodo--</option>
+               </select>
+               <select id="opcionesSeccionFormList" name="opcionesSeccionFormList" required>
+                  <option value="">--Seleccione Seccion--</option>
+               </select>
+               <input type="hidden" id="EscuelaID" name="EscuelaID" value="medicina" data-info="117" data-escuela="MEDICINA">
+               <input type="text" placeholder="MEDICINA" id='EscuelaName' name="EscuelaName" style="margin-left: 210px; width: 225px;" readonly>
+               <input type="text" id='EscuelaNameForDate' name="EscuelaNameForDate" style="visibility: hidden; display: none">
+               <div class="checkboxEstatus" style="visibility: hidden;">
+                  <input type="hidden" name="CBStatus[]" value="0">
+                  <label>
+                  <input type="checkbox" name="CBStatus[]" value="1" checked style="visibility: hidden;"> Nuevo
+                  </label>
+                  <label>
+                  <input type="checkbox" name="CBStatus[]" value="2" checked style="visibility: hidden;"> Graduado
+                  </label>
+                  <label>
+                  <input type="checkbox" name="CBStatus[]" value="3" checked style="visibility: hidden;"> Regular
+                  </label>
+               </div>
+               <span style="color: rgb(0, 0, 0); font-size: 15px; font-weight: bold; font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;">Ordenar Lista</span>
+               <hr>
+               <div class="checkboxEstatus radiobuttonCalificacion" title="Ordenar Tabla">
+                  <label>
+                  <input type="radio" name="opcionesFiltradoTabla" value="opcCedula" onclick='ordenarTabla(1)'> Por Cedula
+                  </label>
+                  <label>
+                  <input type="radio" name="opcionesFiltradoTabla" value="opcNombre" onclick='ordenarTabla(2)'> Por Nombre
+                  </label>
+                  <label>
+                  <input type="radio" name="opcionesFiltradoTabla" value="opcIngreso"  onclick='ordenarTabla(3)'> Por Condicion
+                  </label>                    
+               </div>
+               <div id="SortDateFormList">
+                  <label for="fechaFormList">Por Fecha:</label>
+                  <select id="fechaFormList" title="Ultima Actualizacion" name="fechaFormList" onchange="filtrarTabla(this)">
+                     <option value="">--Seleccione Fecha--</option>
+                  </select>
+               </div>
+               <!-- Tabla vacía con 10 filas -->
+               <table id="table">
+                  <thead>
+                     <tr>
+                        <th>Nro.</th>
+                        <th>Cédula</th>
+                        <th>&nbsp Nombre y apellido</th>
+                        <th>Condición</th>
+                     </tr>
+                  </thead>
+                  <tbody id="TablaListAlumnos">
+                     <!-- 10 filas vacías -->
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </form>
+         </main>
+      </div>
+      <input type="hidden" id="username_Log" value="">
+      <input type="hidden" id="password_Log" value="">
+      <input type="hidden" id="last_log_user" value="">
+   </body>
+</html>

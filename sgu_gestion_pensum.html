@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>SGU-GESTION DE PENSUMS</title>
+      <link rel="stylesheet" href="styleGlobal.css">
+      <link rel="icon" href="img/logo.png" type="image/x-icon">
+      <!-- <link rel="stylesheet" href="styleDrop.css">  -->
+      <script src="https://kit.fontawesome.com/c4cf362cd6.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+      <!-- <script src=UpLoadList.js defer></script> -->
+      <script src="ScriptLoadNameTable.js" defer></script>
+      <!-- <script src="ArrastrarSoltar.js" defer></script> -->
+      <script src=LogOutSession.js defer></script>
+      <script src="LoadAvatarAndAccess.js" defer></script>
+      <script src="homelink.js" defer></script>
+      <link rel="stylesheet" href="CRUD_Materias_styles.css">
+      <script src="CRUD_Materias_script.js" defer></script>
+      <script src="get_last_log.js" defer></script>
+      <script src=Long_Polling.js defer></script>  
+   </head>
+   <body>
+      <div class="contenedor">
+         <div id="message">
+            <p id="lastLogValue">Nuevo valor de Last_Log:</p>
+         </div>
+         <header class="cabecera">
+            <!-- <form name="formulario" method="get">                  -->
+            <input id="EntryBusqueda" type="text" name="nombre" disabled 
+               style="pointer-events: auto; opacity: 1;" 
+               onkeydown="copiarYSimularEnter(event)">
+            <!-- </form> -->
+            <button class="MenuSecCabecera" > 
+            <i class="fa-solid fa-bars fa-2xl"></i> 
+            </button>
+            <div id="logContainer">
+               <div id="lastLog">
+                  <h2>Último acceso</h2>
+                  <span id="lastLogDate">No disponible</span>
+               </div>
+            </div>
+            <button class="LogOutCabecera" > 
+            <i class="fa-solid fa-right-to-bracket fa-2xl"></i>
+            </button>
+            <div id="loading-container" style="display: none;">
+               <div id="spinner"></div>
+            </div>
+            <img src="img/logo.png"  class="LogoCabecera" alt="SGULogo" />
+            <h1 class="TituloCabecera">SISTEMA DE GESTION <br> &nbsp &nbsp UNIVERSITARIA</h1>
+         </header>
+         <main>
+            <div id="MenuNav">
+               <div id="UserInfo">
+                  <img src="img/AvatarDefault.jpg" alt="Descripción de la imagen" class="imagen-redonda">
+                  <h1 id="TypeUser">No disponible</h1>
+                  <h2 id="NameUser">No disponible</h2>
+               </div>
+               <ul class="nav">
+                  <li id="homeLink">
+                     <a href="sgu_cargar_listados.html" class="open-link" target="_blank">HOME<i class="fa-solid fa-house"></i></a>
+                  </li>
+                  <!-- <li><a href="listadosWin.html" target="_blank">DESCARGAR LISTAS <i class="fa-solid fa-file-import"></i></a></li>
+                     <li><a href="CargarListados.html" target="_blank">CARGAR LISTAS <i class="fa-solid fa-calendar-week"></i></a></li>
+                     <li><a href="Index.html" target="_blank">HOME <i class="fa-solid fa-calendar-week"></i></a></li> -->
+                  <!-- <li><a href="listadosWin.html" target="_blank">DESCARGAR LISTAS <i class="fa-solid fa-file-import"></i></a></li> -->
+                  <!-- <li><a href="Index.html" target="">DASHBOARD <i class="fa-solid fa-calendar-week"></i></a></li> -->
+               </ul>
+            </div>
+            <div id="ListdWin">
+               <!-- <form method="post" id="form-alumno" class="form-alumno"> -->
+               <span id="titelCRUDAlumno" class="boton">GESTION DE PENSUMS</span>
+               <div class=" container container-pensum">
+                  <!-- Selección de Escuelas -->
+                  <label for="idEscuela-pensum">Selecciona una Carrera:</label>
+                  <select id="idEscuela-pensum" onchange="loadMaterias()">
+                     <option value="">Seleccione una opción</option>
+                     <option value="117">MEDICINA</option>
+                     <option value="112">BIONALISIS</option>
+                     <option value="157">ENFERMERIA (TSU)</option>
+                     <option value="115">ENFERMERIA (LIC)</option>
+                     <option value="166">REG. y EST. DE SALUD (TSU)</option>
+                     <option value="165">TERAPIA PSICOSOCIAL (TSU)</option>
+                     <option value="164">IMAGENOLOGIA (TSU)</option>
+                     <option value="163">HISTOTECNOLOGIA (TSU)</option>
+                     <option value="161">CITOTECNOLOGIA (TSU)</option>
+                     <option value="162">TEC.CARDIOPULMONAR (TSU)</option>
+                     <option value="172">PSICOLOGIA (LIC)</option>
+                     <option value="171">FISIOTERAPIA (LIC)</option>
+                  </select>
+                  <!-- <select id="idEscuela-pensum" onchange="loadMaterias()">
+                     <option value="">Seleccione una opción</option>  
+                     </select> -->
+                  <!--   <span id="nombreMateria-pensum">dsds</span> Aquí se mostrará el nombre -->
+                  <!-- Tabla que mostrará las materias -->
+                  <table id="materiasTable-pensum">
+                     <thead>
+                        <tr>
+                           <th>Cod_Materia</th>
+                           <th>Nombre_Materia</th>
+                           <th>Acciones</th>
+                        </tr>
+                     </thead>
+                     <tbody></tbody>
+                  </table>
+                  <!-- Formulario para editar o agregar materia -->
+                  <div id="materiaForm-pensum">
+                     <h3 class="form-title-pensum">FORMULARIO PRINCIPAL</h3>
+                     <input type="text" id="codMateria-pensum" placeholder="Código de la Materia" >      
+                     <input type="text" id="nombreMateria-pensum" placeholder="Nombre de la Materia">
+                     <input type="number" id="nivelMateria-pensum" placeholder="Nivel de la Materia">
+                     <input type="number" id="ucMateria-pensum" placeholder="UC de la Materia">
+                     <input type="number" id="nroMateria-pensum" placeholder="Número de la Materia">
+                     <input type="number" id="prelacionUno-pensum" placeholder="Prelación 1">
+                     <input type="number" id="prelacionDos-pensum" placeholder="Prelación 2">
+                     <input type="number" id="prelacionTres-pensum" placeholder="Prelación 3">
+                     <!-- Campo para mostrar el ID de la escuela -->
+                     <input type="text" id="idEscuelaMateria-pensum" placeholder="ID Escuela" >
+                     <button onclick="registrarMateria()" class="button-pensum">Registrar Materia</button>
+                     <button onclick="modificarMateria()" class="button-pensum">Modificar Materia</button>
+                     <button onclick="eliminarMateria()" class="button-pensum">Eliminar Materia</button>
+                     <button onclick="limpiarFormulario()" class="button-pensum">Limpiar Formulario</button>
+                  </div>
+               </div>
+               <!-- </form>  -->
+            </div>
+         </main>
+      </div>
+      <input type="hidden" id="username_Log" value="">
+      <input type="hidden" id="password_Log" value="">
+      <input type="hidden" id="last_log_user" value="">
+   </body>
+</html>

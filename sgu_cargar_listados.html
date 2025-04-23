@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>SGU-CARGA DE LISTADOS</title>
+      <link rel="icon" href="img/logo.png" type="image/x-icon">
+      <link rel="stylesheet" href="styleGlobal.css">
+      <link rel="stylesheet" href="styleDrop.css">
+      <link rel="stylesheet" href="CRUD_Materias_styles.css">
+      <script src="https://kit.fontawesome.com/c4cf362cd6.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/dbf/2.2.0/dbf.min.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js" defer></script>
+      <script src=UpLoadList.js defer></script>
+      <script src="ScriptLoadNameTable.js" defer></script>
+      <script src="ArrastrarSoltar.js" defer></script>
+      <script src=LogOutSession.js defer></script>
+      <script src="OpenLinkNewWithOutLS.js" defer></script>
+      <script src="LoadAvatarAndAccess.js" defer></script>
+      <script src="homelink.js" defer></script>
+      <script src="get_last_log.js" defer></script>
+      <script src=Long_Polling.js defer></script>  
+
+      <style>        
+         #spinner {
+         position: absolute; /* Posiciona el spinner de forma absoluta dentro del contenedorf */
+         top: 50%; /* Coloca el spinner en el centro vertical */
+         left: 50%; /* Coloca el spinner en el centro horizontal */
+         transform: translate(-50%, -50%); /* Ajusta el spinner para que se centre exactamente */
+         width: 50px; /* Tamaño del spinner */
+         height: 50px; /* Tamaño del spinner */
+         animation: spin 1s linear infinite;
+         }
+      </style>
+   </head>
+   <body>
+      <div id="loading-container" style="display: none;">
+         <div id="spinner"></div>
+      </div>
+      <div class="contenedor">
+         <div id="message">
+            <p id="lastLogValue">Nuevo valor de Last_Log:</p>
+         </div>
+         <header class="cabecera">
+            <form name="formulario" method="get"> 
+               <input id="EntryBusqueda" type="text" name="nombre" placeholder="Buscar...">
+            </form>
+            <button class="MenuSecCabecera" > 
+            <i class="fa-solid fa-bars fa-2xl"></i> 
+            </button>
+            <div id="logContainer">
+               <div id="lastLog">
+                  <h2>Último acceso</h2>
+                  <span id="lastLogDate">No disponible</span>
+               </div>
+            </div>
+            <button class="LogOutCabecera" > 
+            <i class="fa-solid fa-right-to-bracket fa-2xl"></i>
+            </button>
+            <img src="img/logo.png"  class="LogoCabecera" alt="SGULogo" />
+            <h1 class="TituloCabecera">SISTEMA DE GESTION <br> &nbsp &nbsp UNIVERSITARIA</h1>
+         </header>
+         <main>
+            <div id="MenuNav">
+               <div id="UserInfo">
+                  <img src="img/AvatarDefault.jpg" alt="Descripción de la imagen" class="imagen-redonda">
+                  <h1 id="TypeUser">No disponible</h1>
+                  <h2 id="NameUser">No disponible</h2>
+               </div>
+               <ul class="nav">
+                  <li><a href="sgu_descargar_listados.html" class="open-link" target="_blank">DESCARGAR LISTAS<i class="fa-solid fa-file-arrow-down "></i></a></li>
+                  <li>
+                     <a href="#">CARGAR LISTADOS<i class="fa-solid fa-cloud-arrow-up"></i></a>
+                     <ul class="FirstSubMenu" id="escuelasList">
+                        <li class="uploadExcel" data-value="medicina" data-cod="117"><a href="#" data-cod="117" data-escuela="MEDICINA">MEDICINA</a></li>
+                        <li class="uploadExcel" data-value="bioanalisis" data-cod="112"><a href="#" data-cod="112" data-escuela="BIONALISIS">BIONALISIS</a></li>
+                        <li>
+                           <a href="#">ENFERMERIA</a>
+                           <ul class="FirstSubMenu">
+                              <li class="uploadExcel" data-value="tsu_enfermeria" data-cod="157"><a href="#" data-cod="157" data-escuela="ENFERMERIA">ENFERMERIA (TSU)</a></li>
+                              <li class="uploadExcel" data-value="lic_enfermeria" data-cod="115"><a href="#" data-cod="115" data-escuela="ENFERMERIA">ENFERMERIA (LIC)</a></li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="#">SALUD PUB. Y DESARR. SOC</a>
+                           <ul class="FirstSubMenu">
+                              <li class="uploadExcel" data-value="tsu_regist_estad_salud" data-cod="166"><a href="#" data-cod="166" data-escuela="SALUD PUB. Y DESARR. SOC">REG. y EST. DE SALUD (TSU)</a></li>
+                              <li class="uploadExcel" data-value="tsu_terapia_psicosocial" data-cod="165"><a href="#" data-cod="165" data-escuela="SALUD PUB. Y DESARR. SOC">TERAPIA PSICOSOCIAL (TSU)</a></li>
+                              <li class="uploadExcel" data-value="lic_psicologia" data-cod="172"><a href="#" data-cod="172" data-escuela="SALUD PUB. Y DESARR. SOC">PSICOLOGIA (LIC)</a></li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="#">CS. BIOMED. Y TEC.</a>
+                           <ul class="FirstSubMenu">
+                              <li class="uploadExcel" data-value="tsu_imagenologia" data-cod="164"><a href="#" data-cod="164" data-escuela="CS. BIOMED. Y TEC.">IMAGENOLOGIA (TSU)</a></li>
+                              <li class="uploadExcel" data-value="tsu_histotecnologia" data-cod="163"><a href="#" data-cod="163" data-escuela="CS. BIOMED. Y TEC.">HISTOTECNOLOGIA (TSU)</a></li>
+                              <li class="uploadExcel" data-value="tsu_citotecnologia" data-cod="161"><a href="#" data-cod="161" data-escuela="CS. BIOMED. Y TEC.">CITOTECNOLOGIA (TSU)</a></li>
+                              <li class="uploadExcel" data-value="tsu_tec_cardiopulmonar" data-cod="162"><a href="#" data-cod="162" data-escuela="CS. BIOMED. Y TEC.">TEC.CARDIOPULMONAR (TSU)</a></li>
+                              <li class="uploadExcel" data-value="lic_fisioterapia" data-cod="171"><a href="#" data-cod="171" data-escuela="CS. BIOMED. Y TEC.">FISIOTERAPIA (LIC)</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li><a href="sgu_gestion_pensum.html" class="open-link" target="_blank">GESTIONAR PENSUM<i class="fa-solid fa-book-open-reader"></i></a></li>
+                  <li id="homeLink">
+                     <a href="#" class="open-link">HOME<i class="fa-solid fa-house"></i></a>
+                  </li>
+               </ul>
+            </div>
+            <input type="file" id="excelFileInput" style="display: none;" accept=".xls,.xlsx" />
+            <div id="ListdWin">
+               <span id="titelCRUDAlumno" class="boton">CARGAR LISTADOS DE ESTUDIANTES</span>
+               <div class="container" style="left: -40px; top: 110px;">
+                  <!-- Contenedor para el arrastrar y soltar -->
+                  <div id="drop-area_Drop" class="drop-area_Drop" title="En formato .XLS o .XLSX">
+                     <p>Arrastra y suelta un archivo Excel aquí</p>
+                     <input type="file" id="file-input_Drop" hidden />
+                     <p id="file-name_Drop">No se ha seleccionado ningún archivo</p>
+                  </div>
+                  <!-- Selección de la tabla desde la base de datos -->.
+                  <div class="form-group_Drop">
+                     <label for="table-name_Drop" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Seleccione Carrera:</label>
+                     <select id="table-name_Drop" class="select-field_Drop" title="Seleccione la tabla correcta">
+                        <option value="" disabled selected>Selecciona una tabla</option>
+                        <!-- Las tablas se llenarán dinámicamente con JavaScript -->
+                     </select>
+                  </div>
+                  <!-- Botones de acción -->
+                  <div class="buttons_Drop">
+                     <button id="upload-btn_Drop" class="btn_Drop" title="Actualizar Record">Cargar</button>
+                     <!-- <button id="upload-btn_Drop" class="btn_Drop"><a href="listadosWin.html" target="_blank">link</a></button> -->
+                     <button id="delete-btn_Drop" class="btn_Drop" title="Limpiar Buffer">Eliminar</button>
+                  </div>
+                  <!-- Mensaje de resultado -->
+                  <div id="message_Drop" class="message_Drop"></div>
+               </div>
+            </div>
+         </main>
+      </div>
+      <input type="hidden" id="username_Log" value="">
+      <input type="hidden" id="password_Log" value="">
+      <input type="hidden" id="last_log_user" value="">
+   </body>
+</html>

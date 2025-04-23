@@ -1,0 +1,178 @@
+/* Heading */
+.container_user h2 {
+    text-align: center;
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.container_user h2:hover {
+    color: #007bff;
+    text-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+   /* Sombra al pasar */
+}
+/* Form group styles */
+.container_user .form-group {
+    margin-bottom: 10px;
+    position: relative;
+}
+/* Label styles */
+.container_user label {
+    font-size: 12px;
+    color: #000000;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.container_user input[type="text"]:focus + label, .container_user input[type="email"]:focus + label, .container_user input[type="tel"]:focus + label, .container_user select:focus + label, .container_user textarea:focus + label {
+    color: #007bff;
+    text-shadow: 0 2px 4px rgba(0, 123, 255, 0.4);
+   /* Sombra al enfocar */
+}
+/* Input, select, and textarea styles */
+.container_user input[type="text"], .container_user input[type="email"], .container_user input[type="tel"], .container_user select, .container_user textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #333;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    transition: border 0.3s ease, background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.container_user input[type="text"]:focus, .container_user input[type="email"]:focus, .container_user input[type="tel"]:focus, .container_user select:focus, .container_user textarea:focus {
+    border-color: #007bff;
+    background-color: #e9f5ff;
+    outline: none;
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+   /* Sombra al enfocar */
+}
+/* Styles for the radio group */
+.container_user .radio-group {
+    display: inline;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+   /* No sombra al pasar el ratón en el radio-group */
+}
+/* Button styles */
+.container_user button {
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.container_user button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+   /* Sombra al pasar */
+}
+.container_user button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+   /* Sombra al hacer click */
+}
+/* Submit Button */
+.container_user #submitButton {
+    background-color: #007bff;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: relative;
+    left: 200px;
+    height: 40px;
+    top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.container_user #submitButton:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+   /* Sombra al pasar */
+}
+.container_user #submitButton:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+   /* Sombra al hacer click */
+}
+/* Clear Button */
+.container_user #clearButton {
+    background-color: #ff5722;
+    color: white;
+    margin-left: 10px;
+    height: 40px;
+    position: relative;
+    left: 200px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.container_user #clearButton:hover {
+    background-color: #e64a19;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+   /* Sombra al pasar */
+}
+.container_user #clearButton:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+   /* Sombra al hacer click */
+}
+/* Responsive styles for smaller screens */
+@media (max-width: 480px) {
+    .container_user {
+        width: 90%;
+        padding: 12px;
+   }
+    .container_user h2 {
+        font-size: 18px;
+   }
+    .container_user .form-group {
+        margin-bottom: 8px;
+   }
+    .container_user button {
+        padding: 8px 15px;
+        font-size: 12px;
+   }
+}
+/* Main container styles */
+.container_user {
+    position: relative;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    top: 130px;
+    height: 800px;
+    transition: all 0.3s ease, box-shadow 0.3s ease;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+}
+.container_user:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+   /* Sombra al pasar */
+}
+.container_user:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+   /* Sombra al hacer click */
+}
+/* Bio text area */
+#userBio {
+    height: 100px;
+}
+/* Femenino radio button margin */
+#femenino {
+    margin-left: 30px;
+}

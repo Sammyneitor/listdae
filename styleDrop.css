@@ -1,0 +1,154 @@
+/* Contenedor principal */
+.container {
+    background-color: rgba(41, 41, 41, 0.038);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 650px;
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 auto;
+    top: 40px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    -webkit-transition: box-shadow 0.3s ease, transform 0.3s ease;
+   /* Safari */
+    -moz-transition: box-shadow 0.3s ease, transform 0.3s ease;
+   /* Firefox */
+}
+/* Hover en el contenedor */
+.container:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+}
+/* Título */
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    box-sizing: border-box;
+}
+/* Área de arrastrar y soltar */
+.drop-area_Drop {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #007bff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    -webkit-transition: background-color 0.3s ease;
+   /* Safari */
+    -moz-transition: background-color 0.3s ease;
+   /* Firefox */
+    -ms-transition: background-color 0.3s ease;
+   /* IE */
+    -o-transition: background-color 0.3s ease;
+   /* Opera */
+    box-sizing: border-box;
+}
+/* Hover en el área de arrastrar y soltar */
+.drop-area_Drop:hover {
+    background-color: #e9f7ff;
+}
+/* Estilo para el texto dentro del área de arrastre */
+.drop-area_Drop p {
+    color: #007bff;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+#file-name_Drop {
+    margin-top: 10px;
+    color: #555;
+    font-style: italic;
+    box-sizing: border-box;
+}
+/* Estilo de los inputs */
+.input-field_Drop {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+.input-field_Drop:focus {
+    border-color: #007bff;
+    outline: none;
+}
+/* Botones */
+.buttons_Drop {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+.btn_Drop {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    background-color: #219ebc;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+    width: 130px;
+}
+#upload-btn_Drop {
+    margin-left: 150px;
+}
+#delete-btn_Drop {
+    margin-right: 150px;
+}
+.btn_Drop:hover {
+    background-color: #0056b3;
+}
+.btn_Drop:active {
+    background-color: #00408d;
+}
+/* Mensaje de resultado */
+.message_Drop {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+/* Estilo para el select */
+#table-name_Drop {
+    background-color: #ffffff;
+    border: 2px solid #0056b3;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #333;
+    appearance: none;
+    -webkit-appearance: none;
+   /* Para Safari */
+    -moz-appearance: none;
+   /* Para Firefox */
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* Hover o focus en el select */
+#table-name_Drop:hover, #table-name_Drop:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+/* Eliminar la flecha predeterminada en IE */
+#table-name_Drop::-ms-expand {
+    display: none;
+}
+#table-name_Drop:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+}

@@ -1,0 +1,1671 @@
+ 
+/*--------------*/
+* {
+    margin: 0;
+   /* Elimina márgenes predeterminados */
+    padding: 0;
+   /* Elimina rellenos predeterminados */
+}
+.contenedor {
+    max-width: 1000px;
+   /* Establece un ancho máximo */
+    height: auto;
+   /*recuerda cambiarlo a AUTO AL FINAL*/
+    margin: 0 auto;
+   /* Centra el contenedor horizontalmente */
+    padding: 0px;
+   /* Agrega algo de espacio interno */
+    background: green;
+    position: relative;
+}
+/*----------------------------------*/
+.cabecera {
+    text-align: center;
+   /* Alinea al borde inferior */
+    height: 100px;
+    width: 1000px;
+   /* Define la altura del header (ajusta según necesites) */
+    background-color: rgb(235, 235, 235);
+   /* Solo para visualización */
+    position: relative;
+    display: flex;
+   /* Activar Flexbox */
+    justify-content: center;
+   /* Centrar horizontalmente */
+    align-items:center 
+   /*alinea verticalmente*/
+}
+.LogoCabecera {
+    width: 150px;
+   /* Ancho del div */
+    height: 110px;
+   /* Alto del div */
+    display: block;
+    position: absolute;
+    top: -25px;
+}
+.TituloCabecera {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:14px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 5px;
+}
+#EntryBusqueda{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:14px;
+    position: absolute;
+    left: 100px;
+    top: 30px;
+    border: 0px solid #007BFF;
+    background-color: silver;
+    outline: none;
+    pointer-events: none;
+   /*Colordelborde*/
+   border-radius: 10px;
+   /*Radiodelborde*/
+   padding: 10px;
+}
+.ButtonBusqueda{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:14px;
+    position: absolute;
+    left: 300px;
+    top: 30px;
+    border: 0px solid #007BFF;
+    background-color: silver;
+   /*Colordelborde*/
+   border-radius: 0px 10px 10px 0px;
+   /*Radiodelborde*/
+   padding: 10px;
+}
+.MenuSecCabecera{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:14px;
+    position: absolute;
+    left: 25px;
+    top: 23px;
+    height: 50px;
+    border: 0px solid #007BFF;
+    background-color: rgb(235, 235, 235);
+   ;
+    font-size: 20px;
+   /*Colordelborde*/
+   border-radius: 10px;
+   /*Radiodelborde*/
+   padding: 10px;
+}
+.LogOutCabecera {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    height: 50px;
+    border: 0px solid #007BFF;
+    background-color: rgb(235, 235, 235);
+    font-size: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    transition: transform 0.3s ease;
+   /* Transición suave */
+}
+.LogOutCabecera:hover {
+    transform: scale(1.1);
+   /* Aumenta el tamaño al pasar el mouse */
+}
+.LogOutCabecera:active {
+    transform: scale(0.95);
+   /* Reduce el tamaño al hacer clic */
+}
+/*---------MENU LATERAL------------------*/
+main{
+    width: 1000px;
+    height: 1000px;
+   /*acuerda cambiar a 100%*/
+    background-color: orange;
+    position: relative;
+}
+#MenuNav{
+    margin: auto;
+    width:250px;
+    height: 1000px;
+   /*poner en 100% al final*/
+    background-color:#219ebc;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+}
+ul,ol{
+    list-style:none;
+    transition: box-shadow 0.6s ease;
+}
+.nav{
+    position: absolute;
+}
+.nav li {
+    width: 100%;
+    padding: 0px;
+}
+.nav > li a{
+    background-color:#023047;
+    color: white;
+    text-decoration: none;
+    display: block;
+   /*Hacequeelenlaceocupetodoelanchodelli*/
+   width: 230px;
+   /*Aseguraqueelenlaceseajustealanchodelli*/
+   padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    transition: background-color 0.6s ease, box-shadow 0.6s ease;
+    -webkit-transition: background-color 0.6s ease, box-shadow 0.6s ease;
+    -moz-transition: background-color 0.6s ease, box-shadow 0.6s ease;
+    -ms-transition: background-color 0.6s ease, box-shadow 0.6s ease;
+    -o-transition: background-color 0.6s ease, box-shadow 0.6s ease;
+}
+/*los li hijos directos de nav .nav > li {
+    float left 
+}
+pero no quiero que sea horizontal. */
+.nav ul li ul {
+    margin-left: 265px ;
+}
+.nav > li{
+    position: relative;
+    border-left: 5px solid deepskyblue;
+}
+.nav > li:hover{
+    border-left: 5px solid greenyellow;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.596);
+   /* Sombra difusa alrededor del li */
+}
+ul:hover{
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.596);
+   /* Sombra difusa alrededor del li */
+}
+.FirstSubMenu {
+    position: absolute;
+    z-index: 1;
+}
+/*padre realtivo e hijo abosoluto para que pueda salir el fujo y ajsutardse*/
+.nav li ul {
+    margin-left: 245px ;
+    margin-top: -58px;
+}
+.nav li a:hover{
+    background-color:rgb(227, 227, 227);
+    color: #000000;
+    font-weight:bold;
+}
+.nav li ul{
+    display: none;
+   /* position: absolute;
+    min-width: 140px;
+   */
+}
+.nav li:hover>ul{
+    display: block;
+}
+.nav .fa-solid{
+    font-size: 20px;
+    float: right;
+    padding-right: 29px;
+}
+.nav li a{
+    padding-left: 25px;
+}
+/*----------INFO DE USUARIO--------*/
+#UserInfo{
+    width: 100%;
+    height: 180px;
+    background-color:#023047;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+.imagen-redonda {
+    border-radius: 50%;
+   /* Esto hace que los bordes sean redondos */
+    width: 100px;
+   /* Puedes ajustar el tamaño según lo necesites */
+    height: 100px;
+   /* Mantén la misma altura y ancho para que sea un círculo */
+    object-fit: cover;
+   /* Asegura que la imagen se ajuste bien al contenedor */
+    margin: 0 auto;
+    text-align: center;
+   /*display: block;
+    al usar flex en el contenedor se omite*/
+}
+#TypeUser{
+    text-align: center;
+    padding-top: 20px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+#NameUser{
+    text-align: center;
+    padding-top: 5px;
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+/*-------------LISTWIND------------*/
+#ListdWin{
+    width: 750px;
+    height: 1000px;
+    background-color: white;
+    position: relative;
+    left: 250px;
+    z-index: 0;
+}
+.vistoso {
+    width: 90%;
+    height: 150px;
+   /* Altura inicial */
+    background-color: #023047;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+   /* Color del texto */
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
+    top: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-size: cover;
+   /* Asegura que la imagen cubra todo el div */
+    background-position: center;
+   /* Centra la imagen */
+   /* Efecto de sombra al texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 10);
+   /* Ajusta estos valores según necesites */
+}
+.vistoso::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(10, 10, 10, 0.5);
+   /* Color azul semitransparente */
+    opacity: 0;
+   /* Inicialmente oculto */
+    transition: opacity 0.3s ease;
+   /* Suaviza la transición de opacidad */
+}
+.vistoso:hover {
+    transform: scale(1.05) translateY(-5px);
+   /* Efecto zoom y elevación al hacer hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.582);
+}
+.vistoso:hover::before {
+    opacity: 1;
+   /* Muestra el pseudo-elemento al hacer hover */
+}
+.texto-normal, .texto-hover {
+    position: absolute;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.texto-normal {
+    opacity: 1;
+    transform: translateY(0);
+}
+.texto-hover {
+    opacity: 0;
+    transform: translateY(20px);
+}
+.vistoso:hover .texto-normal {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+.vistoso:hover .texto-hover {
+    opacity: 1;
+    transform: translateY(0);
+}
+/*-------------------LOGING-------------*/
+#bodyLOG{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+   /*ALTURA COMPLETA DE LA PANTALLA*/
+    scrollbar-width:auto;
+    background-color: rgb(237, 237, 237);
+   /*background: linear-gradient(to right, #003049, #219ebc);
+   /* Degradado de izquierda a derecha */
+}
+#formLogSis{
+    background-color:rgb(248, 248, 248);
+    width: 700px;
+    height: 500px;
+    border-radius: 20px 0px 0px 20px;
+    position: relative;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    -webkit-border-radius: 20px 0px 0px 20px;
+    -moz-border-radius: 20px 0px 0px 20px;
+    -ms-border-radius: 20px 0px 0px 20px;
+    -o-border-radius: 20px 0px 0px 20px;
+}
+#MediaFondo{
+    background-image: url(img/saludLog.jpg);
+    width: 400px;
+    height: 500px;
+    border-radius:0px ;
+    float: right;
+    filter:blur(1px) ;
+    -webkit-filter:blur(1px) ;
+    position: relative;
+}
+#MediaFondo video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#MediaFondo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgb(212, 224, 236) 100%);
+   /* Degradado de transparente a blanco */
+}
+.LogoLoging {
+    width: 300px;
+   /* Ancho del div */
+    height: 260px;
+   /* Alto del div */
+    display: block;
+    position: absolute;
+    right: 45px;
+    top: -35px;
+}
+.LogoFCS {
+    width: 100px;
+   /* Ancho del logo */
+    height: 100px;
+   /* Alto del logo */
+    display: block;
+    position: absolute;
+    right: 30px;
+    top: 320px;
+    transition: transform 0.3s ease;
+   /* Transición suave al hacer hover */
+}
+.LogoFCS:hover {
+    transform: scale(1.2);
+   /* Aumenta el tamaño del logo al 120% */
+}
+.LogoUC{
+    width: 90px;
+   /* Ancho del div */
+    height: 110px;
+   /* Alto del div */
+    display: block;
+    position: absolute;
+    right: 160px;
+    top:320px;
+    transition: transform 0.3s ease;
+   /* Transición suave al hacer hover */
+}
+.LogoFACYT{
+    width: 100px;
+   /* Ancho del div */
+    height: 100px;
+   /* Alto del div */
+    display: block;
+    position: absolute;
+    right: 270px;
+    top:320px;
+    transition: transform 0.3s ease;
+   /* Transición suave al hacer hover */
+}
+.LogoFCS:hover,.LogoUC:hover,.LogoFACYT:hover {
+    transform: scale(1.2);
+   /* Aumenta el tamaño del logo al 120% */
+}
+#formLogSis span{
+    position: absolute;
+    right: 0px;
+    bottom: 0;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: white;
+    text-align: right;
+    font-style: italic;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+#formularioLoging{
+    width: 295px;
+   /*Anchodeldiv*/
+   height: 500px;
+   /*Altodeldiv*/
+   background-color: rgb(211, 211, 211);
+    border-radius:10px ;
+    -webkit-border-radius: 20px 0px 0px 20px ;
+    -moz-border-radius:10px ;
+    -ms-border-radius:10px ;
+    -o-border-radius:10px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background: linear-gradient(to right, #219ebc,#003049);
+   /* Degradado de izquierda a derecha */
+}
+#formularioLoging form{
+    width: 260px;
+    height: auto;
+    background-color: none;
+    text-align: center;
+    margin-top: 50px;
+}
+#formularioLoging form h1{
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color: white;
+    float: left;
+    margin-bottom: 30px;
+}
+#formularioLoging form label:nth-of-type(1){
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: relative;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    top: -35px;
+    float: right;
+    background-color: rgb(248, 248, 248);
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    right: -18px;
+    border-radius: 20px 0px 0px 20px;
+    -webkit-border-radius: 20px 0px 0px 20px;
+    -moz-border-radius: 20px 0px 0px 20px;
+    -ms-border-radius: 20px 0px 0px 20px;
+    -o-border-radius: 20px 0px 0px 20px;
+}
+#formularioLoging form label{
+    font-size: medium;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    float:left;
+    color: white;
+}
+#username,#password{
+    border-width: 0px;
+    border-radius: 15px;
+    outline: none;
+    height: 30px;
+    width: 200px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 5px;
+    position: relative;
+    left: 0px;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 50px;
+}
+#Btn-Log {
+    border-width: 0px;
+    border-radius: 20px;
+    height: 40px;
+    width: 150px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: relative;
+    top: 0px;
+    margin: 0 auto;
+    background-color: #0d223a;
+    color: white;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+#Btn-Log:hover {
+    background-color: #308def;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+#Btn-Log:active {
+    background-color: #1a334c;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+    transform: scale(0.95);
+}
+#formularioLoging form a{
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+#formularioLoging form a:nth-of-type(2){
+    color: white;
+    font-size: 14px;
+    padding-top: 20px;
+    text-decoration: underline;
+}
+#formularioLoging form .fa-solid{
+    position: relative;
+    top: -62px;
+    float: right;
+    right: 20px;
+}
+/*----------------FORMLIST--------------*/
+#formListSrc{
+    width:750px;
+    height: 1000px;
+    background-color: none;
+    text-align: center;
+    background-color: rgb(235, 235, 235);
+    position: absolute;
+    right: 0;
+}
+.NroEstudiantesTotales {
+    width: 200px;
+    height: 100px;
+    background-color: rgb(56, 183, 230);
+    margin: 0 auto;
+    margin: 30px;
+    position: relative;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    text-align: right;
+    z-index: 1;
+    border-radius: 10px;
+}
+.PromedioAcademicoTotal{
+    width: 200px;
+    height: 100px;
+    background-color: rgb(56, 183, 230);
+    margin: 0 auto;
+    position:relative;
+    float: right ;
+    margin: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    text-align: right;
+    z-index: 1;
+}
+.NuevoIngresoTotales{
+    width: 200px;
+    height: 100px;
+    background-color: rgb(56, 183, 230);
+    margin: 0 auto;
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 265px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    text-align: right;
+    z-index: 1;
+}
+.NroEstudiantesTotales,.PromedioAcademicoTotal,.NuevoIngresoTotales{
+    font-size: 11px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    background-color:#219ebc;
+}
+.NroEstudiantesTotales:hover,.NuevoIngresoTotales:hover,.PromedioAcademicoTotal:hover {
+    transform: scale(1.1);
+   /*Aumentaligeramenteeltamaño*/
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+   /*Añadeunasombrasuave*/
+   background-color: #023047;
+   /*Cambialigeramenteelcolor*/
+   color: white;
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+.ContadorDashboardList{
+    position: relative;
+    top: -145px;
+    right: 10px;
+    z-index: 0;
+    font-size: 25px;
+}
+#formListSrc div h2{
+    margin-right: 10px;
+    margin-top: 30px;
+}
+#formListSrc div i{
+    font-size: 50px;
+}
+.none{
+    display: flex;
+    position: relative;
+    margin-top: 100px;
+    background-color: red;
+}
+#opcionesMateriaFormList,#opcionesSeccionFormList,#CodAsigSrc,#EscuelaName, #periodoFormList,#BuscarListSrc,#ClearInfoEstudiante{
+    position: absolute;
+    border-width: 0px;
+    border-radius: 15px;
+    outline: none;
+    height: 30px;
+    width: 140px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    margin-top: 90px;
+    margin-left: 30px;
+    margin-right: 0px;
+    padding: 5px;
+    left: 0px;
+    font-size: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#CodAsigSrc{
+    font-size: 15px;
+}
+#BuscarListSrc{
+    left: 446px;
+    top: 162px;
+    font-size: 15px;
+    color: white;
+    width: auto;
+    height: 40px;
+    background-color:rgb(124, 195, 17);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+#BuscarListSrc .fa-magnifying-glass{
+    padding-right: 10px;
+}
+#ClearListSrc{
+    margin-left: 200px;
+    position: absolute;
+    border-width: 0px;
+    border-radius: 15px;
+    outline: none;
+    height: 30px;
+    width: 140px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    margin-top: 90px;
+    margin-left: 30px;
+    margin-right: 0px;
+    padding: 5px;
+    font-size: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    left: 558px;
+    top: 162px;
+    font-size: 15px;
+    width: auto;
+    height: 40px;
+    background-color:rgb(175, 26, 26);
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    -webkit-transition: transform 0.3s ease, background-color 0.3s ease;
+    -moz-transition: transform 0.3s ease, background-color 0.3s ease;
+    -ms-transition: transform 0.3s ease, background-color 0.3s ease;
+    -o-transition: transform 0.3s ease, background-color 0.3s ease;
+}
+#BuscarListSrc:hover, #ClearListSrc:hover {
+    background-color: rgb(41, 85, 160);
+    transform: scale(1.1);
+   /* Agranda el botón */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+   /* Añade una sombra suave */
+}
+#BuscarListSrc:hover{
+    background-color:rgb(87, 136, 13);
+}
+#ClearListSrc:hover {
+    background-color:rgb(95, 15, 15);
+}
+#ClearListSrc i{
+    margin-right: 10px;
+}
+#periodoFormList{
+    left: 470px;
+    top: 101px;
+    height: 40px;
+    width: 220px;
+}
+hr {
+    border: none;
+   /* Eliminar el borde predeterminado */
+    height: 1px;
+   /* Altura de la línea */
+    background-color:white;
+   /* Color de la línea */
+    margin: 0 auto;
+    margin-top: 25px;
+    position: relative ;
+    right: -85px;
+    width: 520px;
+}
+hr:nth-of-type(2){
+    top: 30px;
+    right: -120px;
+    width: 555px;
+}
+#formListSrc span{
+    color: white;
+    position: absolute;
+    left:30px;
+    margin-top: 150px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#formListSrc span:nth-of-type(2){
+    margin-top: 150px;
+    position: absolute;
+}
+#ClearInfoEstudiante {
+    float: right;
+    height: 44px;
+    width: auto;
+    position: relative;
+    margin-right: 30px;
+    top: 100px;
+    background-color: #007bff00;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    -webkit-transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    -moz-transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    -ms-transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    -o-transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+#ClearInfoEstudiante:hover {
+    transform: scale(1.1);
+   /* Aumenta el tamaño al 110% */
+}
+#ClearInfoEstudiante:active {
+    transform: scale(0.95);
+   /* Reduce el tamaño al 95% al presionar */
+}
+#opcionesSeccionFormList{
+    margin-top: 30px;
+    left: 235px;
+    height: 40px;
+    width: 225px;
+}
+#opcionesMateriaFormList{
+    margin-top: 30px;
+    left: 0px;
+    height: 40px;
+    width: 225px;
+}
+.checkboxEstatus{
+    background-color: #219ebc;
+    position: relative;
+    width: auto;
+    margin-top: 90px;
+    float: right;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: white;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+    padding: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 185px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    -webkit-transition: background-color 0.5s ease, box-shadow 0.3s ease;
+    -moz-transition: background-color 0.5s ease, box-shadow 0.3s ease;
+    -ms-transition: background-color 0.5s ease, box-shadow 0.3s ease;
+    -o-transition: background-color 0.5s ease, box-shadow 0.3s ease;
+}
+#fechaFormList{
+    border-radius: 5px;
+    border-width: 0px;
+    height: 20px;
+}
+.radiobuttonCalificacion{
+    margin-top: 60px;
+    margin-bottom: 25px;
+    float: left;
+    left: 30px;
+}
+#SortDateFormList{
+    background-color:#219ebc;
+    position: relative;
+    width: auto;
+    height: 18px;
+    margin-top: -67px;
+    margin-bottom: 25px;
+    color: white;
+    float: right;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    padding: 12px;
+    right: 95px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 15px;
+    transition: background-color 0.5s ease, box-shadow 0.3s ease;
+    -webkit-transition: background-color 0.5s ease, box-shadow 0.3s ease;
+    -moz-transition: background-color 0.5s ease, box-shadow 0.3s ease;
+    -ms-transition: background-color 0.5s ease, box-shadow 0.3s ease;
+    -o-transition: background-color 0.5s ease, box-shadow 0.3s ease;
+}
+#SortDateFormList:hover, .checkboxEstatus:hover {
+   /*background-color: rgb(14, 49, 62);
+   /* Cambia el color de fondo al pasar el ratón */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.683);
+   /* Sombra difusa */
+}
+/*--------------TABLAA-***************/
+table {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+    border-collapse: collapse;
+   /* Para que las celdas no tengan espacios entre ellas */
+    border-radius: 10px;
+   /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgb(238, 238, 238);
+   /* Sombra para dar profundidad */
+    width: 680px;
+    margin: 0 auto;
+    position: relative;
+    max-height: 500px;
+   /* Ajusta la altura deseada */
+    background-color: deepskyblue;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    display: block;
+    overflow: auto;
+   /* Esto habilita el desplazamiento vertical, pero sin mostrar la barra */
+}
+/* Estilos para Webkit (Chrome, Safari) */
+table::-webkit-scrollbar {
+    display: none;
+   /* Esto oculta las barras de desplazamiento completamente */
+}
+/* Estilos para Firefox */
+table {
+    scrollbar-width: none;
+   /* Para Firefox, oculta las barras de desplazamiento */
+}
+thead, tbody {
+    display: table;
+   /* Mantiene el comportamiento de tabla */
+    width: 680px;
+   /* Ajusta el ancho para que coincida con el contenedor */
+}
+tbody {
+    height: auto;
+   /* Permite que el tbody ajuste su altura automáticamente */
+}
+td,th {
+    padding: 8px;
+   /* Espaciado interno de las celdas */
+    text-align: center;
+   /* Alineación del texto */
+    border-bottom: 1px solid #f2f2f2;
+   /* Borde inferior suave */
+    margin: 0 auto;
+    width: auto;
+   /*border: 1px solid black;
+    Añade un borde negro a cada celda */
+    padding: 8px;
+   /* Espaciado interno */
+    text-align: left;
+   /* Alineación del texto */
+    height: 20px;
+}
+th {
+    background-color:#219ebc;
+   /* Color de fondo para las cabeceras */
+    color: white;
+   /* Color del texto en las cabeceras */
+}
+th:nth-child(1){
+    width: 40px 
+}
+th:nth-child(2){
+    width: 60px 
+}
+th:nth-child(3){
+    width: 200px 
+}
+th:nth-child(4){
+    width: 100px 
+}
+/*-------------ANCHO DE Columnas-----------*/
+td:nth-child(1){
+    width: 40px 
+}
+td:nth-child(2){
+    width: 40px 
+}
+td:nth-child(3){
+    width: 200px 
+}
+td:nth-child(4){
+    width: 100px 
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+   /* Color suave para filas alternas */
+}
+tr {
+    background-color: #ededed;
+   /* Color al pasar el mouse sobre la fila */
+}
+tr:hover {
+    background-color:rgb(198, 198, 198);
+   /* Color al pasar el mouse sobre la fila */
+}
+/* #formListSrc label{
+    position: absolute;
+    height: 30px;
+    width: 150px;
+    font-size: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#formListSrc label{
+    margin: 40px;
+    padding-left: 40px;
+}
+*/
+.title{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+#loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+   /* Fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    z-index: 9999;
+   /* Asegura que esté por encima de todo */
+}
+#spinner {
+    border: 8px solid #f3f3f3;
+   /* Fondo del spinner */
+    border-top: 8px solid #3498db;
+   /* Color del spinner */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+/* Animación del spinner */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+   }
+    100% {
+        transform: rotate(360deg);
+   }
+}
+#logContainer {
+    position: relative;
+   /* El contenedor tiene posicionamiento relativo */
+    max-width: 350px;
+   /* Max-width para el contenedor */
+    margin: 20px auto;
+   /* Centrado con un margen de 20px */
+    padding: 15px;
+   /* Espaciado interno */
+    background-color: rgb(235, 235, 235);
+   /* Fondo gris claro */
+    border-radius: 10px;
+   /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+   /* Sombra para darle profundidad */
+    border: 0px solid #007BFF;
+   /* Borde azul claro */
+    margin-right: 130px;
+}
+/* Estilo para el #lastLog (dentro del contenedor) */
+#lastLog {
+    text-align: right;
+   /* Alinea el texto a la derecha */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #333;
+   /* Color del texto */
+}
+#lastLog h2 {
+    font-size: 18px;
+   /* Tamaño para el título "Último acceso" */
+    font-weight: bold;
+   /* Negrita para el título */
+    margin: 0 0 5px 0;
+   /* Espacio debajo del título */
+}
+#lastLog span {
+    font-size: 16px;
+   /* Tamaño de la fecha */
+    color: #555;
+   /* Color gris para la fecha */
+    display: block;
+   /* Muestra la fecha en una línea separada */
+}
+#message {
+    display: none;
+   /* Ocultar el mensaje inicialmente */
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 5px;
+    border: 1px solid #f5c6cb;
+}
+.status-group h3 {
+    font-size: 1.2em;
+    color: #000000;
+    margin-bottom: 10px;
+}
+.status-group label {
+    font-size: 30px;
+    color: #000000;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-left: 10px;
+}
+.estatus-alumno{
+    margin-left: 10px;
+}
+.tipo-alumno{
+    margin-left: -10px;
+}
+#periodo-ingreso {
+    justify-content: space-between;
+   /* Espacio entre los elementos */
+    align-items: center;
+   /* Alineación vertical centrada */
+   /* margin-bottom: 20px;
+   /* Espacio debajo de este contenedor */
+    margin-top: 20px;
+    margin-left: -20px;
+}
+/* Estilo para los inputs y select */
+#periodo-ingreso input, #periodo-ingreso select {
+    padding: 8px 12px;
+   /* Espacio interior para los elementos */
+    font-size: 14px;
+   /* Tamaño de fuente */
+    border-radius: 5px;
+   /* Bordes redondeados */
+    border: 1px solid #ccc;
+   /* Borde gris claro */
+}
+#periodo-ingreso #periodo_ingreso{
+    width: 65px;
+}
+#periodo-ingreso #ano_ingreso{
+    width: 40px;
+}
+/* Estilo del placeholder */
+#periodo-ingreso input::placeholder {
+    color: #aaa;
+   /* Color del texto del placeholder */
+    font-style: italic;
+   /* Estilo en cursiva */
+}
+/*/
+/////////////////// CSS DE LOS CRUD ALUMNO //////////////////
+/*/
+/* Estilos generales para el formulario */
+/* Estilos generales del formulario */
+#titelCRUDAlumno {
+   /* Tipografía */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+   /* Espacio entre letras */
+    text-transform: uppercase;
+   /* Todas las letras en mayúsculas */
+    position: absolute;
+    margin: 0 auto;
+    top: 20px;
+    left: 40px;
+   /* Color y degradado */
+    color: #fff;
+    background: linear-gradient(to right, #1b83dd, #009688);
+   /* Efectos visuales */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+   /* Sombra exterior */
+    border-radius: 10px;
+   /* Diseño */
+    padding: 20px 40px;
+    width: 80%;
+   /* Ajusta el ancho según sea necesario */
+    text-align: center;
+   /* Animación */
+    animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+   }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+   }
+}
+.contactos-group,.status-group,.names-group,.ids-group,.infoPersonal-group,.ubicacion-group {
+    display:block;
+    width: 750px;
+   /* El contenedor tiene un ancho fijo de 750px */
+    margin: 0 auto;
+   /* Centra el contenedor en la página */
+    background-color: white;
+    position: absolute;
+    top: 100px;
+}
+.status-group{
+    top: 510px;
+}
+.ids-group {
+    top: 170px;
+}
+.infoPersonal-group {
+    top: 240px;
+}
+.ubicacion-group {
+    top: 310px;
+}
+.contactos-group {
+    top: 380px;
+}
+.input-nombre, .input-apellido {
+    width: 19%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s ease;
+    position: relative;
+    float: left;
+    margin: 10px;
+}
+.input-Cedula,.input-Nacionalidad,.input-Escuela, .input-ModalidadIngreso{
+    width: 15%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s ease;
+    position: relative;
+    float: left;
+    margin: 10px;
+}
+.input-Escuela {
+    width: 30%;
+}
+.input-ModalidadIngreso{
+    width: 21%;
+}
+.input-Nacionalidad{
+    width: 19%;
+}
+.input-Genero,.input-EstadoCivil,.input-DOB, .input-PaisOrigen{
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s ease;
+    position: relative;
+    float: left;
+    margin: 10px;
+}
+.input-EstadoCivil{
+    width: 22%;
+}
+.input-EstadoActual, .input-Direccion {
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s ease;
+    position: relative;
+    float: left;
+    margin: 10px;
+}
+.input-EstadoActual{
+    width: 25%;
+}
+.input-Direccion{
+    width:62%;
+}
+.input-TelLocal,.input-TelCelular,.input-Email{
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s ease;
+    position: relative;
+    float: left;
+    margin: 10px;
+}
+.input-Email{
+    width: 41%;
+}
+/* Estilo específico para el grupo .status-group */
+.status-group {
+    margin-bottom: 20px;
+}
+/* Cada div dentro de .status-group que contiene un radio button y su etiqueta */
+.status-group div {
+    float: left;
+   /* Alinea los elementos horizontalmente */
+    margin-right: 20px;
+   /* Espacio entre los elementos */
+}
+/* Limpiar el float después de los contenedores dentro de .status-group */
+.status-group::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* Estilo específico para los radio buttons dentro de .status-group */
+.status-group input[type="radio"] {
+    margin-right: 5px;
+   /* Espacio entre el radio button y la etiqueta */
+}
+/* Estilo específico para las etiquetas dentro de .status-group */
+.status-group label {
+    font-size: 16px;
+    margin-right: 10px;
+   /* Espacio entre el texto y el siguiente radio button */
+}
+/*********** LEER QR****************/
+/* Contenedor principal */
+.container {
+    text-align: center;
+    top:550px;
+    display:block;
+    width: 750px;
+   /* El contenedor tiene un ancho fijo de 750px */
+   /* margin: 0 auto;
+   /* Centra el contenedor en la página */
+    background-color: 451485;
+    position: absolute;
+    float: right;
+}
+/* Botón */
+#btnEscanear, #btnGuardar, #btnLimpiar,#btnCargar,#btnTempReg {
+    background-color: #219ebc;
+   /*Azul*/
+   color: white;
+    padding: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    top: 30px;
+    position: relative;
+   /*Eliminalosbordes*/
+   border-radius: 10px;
+   /*Redondealigeramentelosbordes*/
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   /*Agregaunasutilsombra*/
+   transition: background-color 0.3s;
+}
+#btnEscanear {
+    float: left;
+    margin-left: 20px;
+}
+#btnLimpiar {
+    float: left;
+    margin-left: 20px;
+}
+#btnGuardar {
+    float: left;
+    margin-left: 20px;
+}
+#btnCargar {
+    float: left;
+    margin-left: 20px;
+}
+#btnBuscar {
+    float: left;
+    margin-left: 20px;
+}
+#btnEscanear:hover, #btnGuardar:hover, #btnCargar:hover, #btnLimpiar:hover {
+    background-color: #003049;
+}
+#contenedorEscaneo{
+    background-color: white;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+/********* MODAL */
+#modalResultados {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+   /* Fondo semitransparente */
+    display: none;
+   /* Se oculta inicialmente */
+    z-index: 1000;
+   /* Asegura que el modal esté encima de otros contenidos */
+    padding: 20px;
+    overflow: hidden;
+}
+/* Estilo del contenedor del modal */
+#modalContent {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 70%;
+    max-width: 800px;
+    height: 600px;
+   /* Establece la altura fija */
+    margin: 0 auto;
+   /* Centra el modal horizontalmente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+/* Título del modal */
+#modalContent h3 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+/* Estilo de la lista de resultados */
+#resultadoLista {
+    list-style-type: none;
+   /* Elimina los puntos predeterminados */
+    padding: 0;
+    margin: 0;
+    max-height: 480px;
+   /* Ajusta la altura máxima de la lista */
+    overflow-y: auto;
+   /* Muestra scroll solo si el contenido excede el alto */
+    overflow-x: hidden;
+   /* Desactiva el scroll horizontal */
+}
+/* Estilo de los items de la lista */
+#resultadoLista li {
+    padding: 12px;
+    margin: 6px 0;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+/* Efecto hover sobre los elementos de la lista */
+#resultadoLista li:hover {
+    background-color: #e2e2e2;
+    transform: translateX(5px);
+   /* Ligero movimiento para dar un efecto de interacción */
+}
+/* Estilo del botón Cerrar */
+#modalContent button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto 0;
+   /* Centra el botón */
+}
+/* Efecto hover sobre el botón */
+#modalContent button:hover {
+    background-color: #0056b3;
+}
+/* Añadir sombra al modal cuando se muestra */
+#modalResultados.show {
+    display: block;
+   /* Solo se muestra cuando se añade la clase 'show' */
+}
+/************************BOTON DE CARGA DE ARCHIVO ALUMNOS CRUD***********************************/
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+   /* Fondo oscuro semitransparente */
+    display: none;
+   /* Inicialmente oculto */
+    z-index: 999;
+   /* Asegura que esté sobre todo el contenido */
+}
+/* Estilos para el modal (cuadro de confirmación) */
+#confirmMessage {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+    border-radius: 10px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   /* Centrado exacto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+   /* Asegura que esté sobre el overlay */
+    display: none;
+   /* Inicialmente oculto */
+}
+/* Estilo para el mensaje */
+#confirmMessage p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+/* Estilo para los botones */
+#confirmMessage button {
+    background-color: #007bff;
+   /* Color verde para el botón de confirmar */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+#confirmMessage button:hover {
+    background-color: #45a049;
+}
+#cancelUpload {
+    background-color: #f44336;
+   /* Color rojo para el botón de cancelar */
+}
+#cancelUpload:hover {
+    background-color: #e53935;
+}
+/*
+/******************CAJA DE RROR MODAL*/
+/* Estilo del modal */
+.modalERROR {
+    display: none;
+   /* Ocultar el modal por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+   /* Fondo oscuro */
+}
+/* Contenido del modal */
+.modal-contentERROR {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+   /* Ajustar el tamaño del modal */
+    max-width: 600px;
+    max-height: 80%;
+   /* Asegura que el modal no se extienda más allá del 80% de la pantalla */
+    overflow: hidden;
+   /* Oculta los desbordamientos en general */
+    display: flex;
+    flex-direction: column;
+}
+/* Botón de cerrar */
+.close-btnERROR {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close-btnERROR:hover, .close-btnERROR:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Estilo de los mensajes de error */
+#errorMessagesERROR {
+    max-height: 300px;
+   /* Establecer una altura máxima inicial */
+    overflow: auto;
+   /* Agregar scroll si el contenido excede el tamaño */
+    padding: 10px;
+    flex-grow: 1;
+   /* Permite que el contenedor de errores crezca */
+    overflow-x: auto;
+   /* Scroll horizontal si el contenido se excede horizontalmente */
+    overflow-y: auto;
+   /* Scroll vertical si el contenido se excede verticalmente */
+}
+/* Opcional: personaliza la apariencia de las barras de desplazamiento */
+#errorMessagesERROR::-webkit-scrollbar {
+    width: 8px;
+   /* Ancho de la barra de desplazamiento vertical */
+    height: 8px;
+   /* Alto de la barra de desplazamiento horizontal */
+}
+#errorMessagesERROR::-webkit-scrollbar-thumb {
+    background: #888;
+   /* Color de la barra de desplazamiento */
+    border-radius: 10px;
+   /* Bordes redondeados de la barra */
+}
+#errorMessagesERROR::-webkit-scrollbar-thumb:hover {
+    background: #555;
+   /* Color de la barra de desplazamiento al pasar el cursor */
+}
+/*---------CAPAOVERLAY MIENTRAS SE CARGAN LSO LISTADOS****/
+/*---------------*/
+/* Estilo para el botón btnTempReg cuando tiene el texto "Habilitar Botón" (rojo) */
+#btnTempReg.rojo {
+    background-color: rgb(131, 18, 18);
+   /* Color de fondo rojo */
+    color: white;
+   /* Texto blanco */
+}
+/* Estilo para el botón btnTempReg cuando tiene el texto "Deshabilitar Botón" (verde) */
+#btnTempReg.verde {
+    background-color: green;
+   /* Color de fondo verde */
+    color: white;
+   /* Texto blanco */
+}
+/* Estilo para el botón btnGuardar cuando está deshabilitado */
+#btnGuardar.bloqueado {
+    background-color: #d3d3d3;
+   /* Gris claro */
+    color: #a9a9a9;
+   /* Gris oscuro */
+    cursor: not-allowed;
+   /* Cambia el cursor a no permitido */
+}
+/* Estilo para el botón btnGuardar cuando está habilitado */
+#btnGuardar:not(.bloqueado) {
+    background-color: #219ebc;
+   /* Color de fondo azul */
+    color: white;
+   /* Texto blanco */
+}
+#btnGuardar:not(.bloqueado):hover {
+    background-color: #003049;
+}

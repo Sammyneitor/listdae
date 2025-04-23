@@ -1,0 +1,188 @@
+/* Contenedor principal */
+html {
+    scroll-behavior: smooth;
+}
+/* Estilo para el botón de "Editar" en Pensum */
+button.editar-pensum {
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+   /* Para navegadores modernos */
+    -webkit-transition: background-color 0.3s ease;
+   /* Safari y versiones antiguas de Chrome */
+    -moz-transition: background-color 0.3s ease;
+   /* Firefox */
+    -ms-transition: background-color 0.3s ease;
+   /* IE */
+}
+/* Estilo al pasar el ratón por encima */
+button.editar-pensum:hover {
+    background-color: #0056b3;
+}
+/* Estilo cuando el botón es presionado */
+button.editar-pensum:active {
+    background-color: #004085;
+}
+#idEscuela-pensum {
+    font-size: 16px;
+    padding: 8px 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+    width: 100%;
+}
+/* Estilo al pasar el ratón por encima */
+#idEscuela-pensum:hover {
+    border-color: #007bff;
+}
+/* Estilo al tener el select enfocado */
+#idEscuela-pensum:focus {
+    outline: none;
+    border-color: #0056b3;
+    background-color: #e9f4ff;
+}
+.container-pensum {
+    width: 600px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: -440px;
+    margin-left: 60px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* Título principal */
+.title-pensum {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+/* Estilos para el formulario */
+#materiaForm-pensum {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/* Título del formulario */
+#materiaForm-pensum .form-title-pensum {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+/* Estilos para los campos del formulario */
+#materiaForm-pensum input {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    text-transform: uppercase;
+}
+/* Estilo al estar enfocado */
+#materiaForm-pensum input:focus {
+    border-color: #219ebc;
+    outline: none;
+}
+/* Botones */
+.button-pensum {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #219ebc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+/* Estilo al pasar el ratón */
+.button-pensum:hover {
+    background-color: #0056b3;
+}
+.button-pensum:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+/* Estilos para el select de las escuelas */
+select-pensum {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+select-pensum:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+/* Estilos para la tabla */
+table#materiasTable-pensum {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+table#materiasTable-pensum th, table#materiasTable-pensum td {
+    padding: 12px;
+    padding-left: 80px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+table#materiasTable-pensum th {
+    background-color: #219ebc;
+    color: white;
+    padding-left: 60px;
+}
+table#materiasTable-pensum tr:hover {
+    background-color: #f4f4f4;
+}
+/* Estilos para los mensajes de alerta */
+.alert-pensum {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.alert-pensum.success {
+    background-color: #28a745;
+    color: white;
+}
+.alert-pensum.error {
+    background-color: #dc3545;
+    color: white;
+}
+.alert-pensum.info {
+    background-color: #17a2b8;
+    color: white;
+}
+/* Medios para dispositivos móviles */
+@media (max-width: 768px) {
+    .container-pensum {
+        width: 95%;
+        padding: 15px;
+   }
+    .button-pensum {
+        font-size: 14px;
+   }
+    #materiaForm-pensum input, select-pensum {
+        font-size: 14px;
+   }
+    table#materiasTable-pensum th, table#materiasTable-pensum td {
+        font-size: 14px;
+   }
+}

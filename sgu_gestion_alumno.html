@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>SGU-GESTION DE ALUMNOS</title>
+      <link rel="stylesheet" href="styleGlobal.css">
+      <link rel="icon" href="img/logo.png" type="image/x-icon">
+      <!-- <link rel="stylesheet" href="styleDrop.css">  -->
+      <script src="https://kit.fontawesome.com/c4cf362cd6.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+      <script src="html5-qrcode.min.js" defer></script>
+      <script src="loadQRCode.js" defer></script> 
+      <script src="SearchAlumnoCRUD.js" defer></script> 
+      <script src="UpLoadList_AlumnosCRUD.js" defer></script> 
+      <!-- <script src="Save_AlumnoCRUD.js" defer></script>  -->
+      <script src="LoadAvatarAndAccess.js" defer></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+      <!-- Incluir Flatpickr JS -->
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+      <!-- Incluir el archivo de idioma de Flatpickr para español -->
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+      <script src="ScriptLoadNameTable.js" defer></script> 
+      <script src=LogOutSession.js defer></script>
+      <script src="GuardarModificarCRUD.js" defer></script>
+      <script src="DisabelEdition.js" defer></script>
+      <script src="get_last_log.js" defer></script>
+      <script src=Long_Polling.js defer></script>  
+      <!-- <script src=UpLoadList.js defer></script> -->
+      <!-- <script src="ScriptLoadNameTable.js" defer></script> -->
+      <!-- <script src="ArrastrarSoltar.js" defer></script> -->
+      <!-- <script src=LogOutSession.js defer></script> -->
+      <!-- <script src=Long_Polling.js defer></script>  
+         <script src="get_last_log.js" defer></script>
+         <script src="LoadAvatarAndAccess.js" defer></script> -->
+         <style>        
+            #spinner {
+            position: absolute; /* Posiciona el spinner de forma absoluta dentro del contenedorf */
+            top: 50%; /* Coloca el spinner en el centro vertical */
+            left: 50%; /* Coloca el spinner en el centro horizontal */
+            transform: translate(-50%, -50%); /* Ajusta el spinner para que se centre exactamente */
+            width: 50px; /* Tamaño del spinner */
+            height: 50px; /* Tamaño del spinner */
+            animation: spin 1s linear infinite;
+            }
+         </style>
+
+   </head>
+   <body>
+      <div class="contenedor">
+         <div id="message">
+            <p id="lastLogValue">Nuevo valor de Last_Log:</p>
+         </div>
+         <header class="cabecera">
+            <!-- <form name="formulario" method="get">                  -->
+            <input id="EntryBusqueda" type="text" name="nombre" placeholder="Buscar por Cedula..." 
+               style="pointer-events: auto; opacity: 1;" 
+               onkeydown="copiarYSimularEnter(event)">
+            <!-- </form> -->
+            <button class="MenuSecCabecera" > 
+            <i class="fa-solid fa-bars fa-2xl"></i> 
+            </button>
+            <div id="logContainer">
+               <div id="lastLog">
+                  <h2>Último acceso</h2>
+                  <span id="lastLogDate">No disponible</span>
+               </div>
+            </div>
+            <button class="LogOutCabecera" > 
+            <i class="fa-solid fa-right-to-bracket fa-2xl"></i>
+            </button>
+            <div id="loading-container" style="display: none;">
+               <div id="spinner"></div>
+            </div>
+            <img src="img/logo.png"  class="LogoCabecera" alt="SGULogo" />
+            <h1 class="TituloCabecera">SISTEMA DE GESTION <br> &nbsp &nbsp UNIVERSITARIA</h1>
+         </header>
+         <main>
+            <div id="MenuNav">
+               <div id="UserInfo">
+                  <img src="img/AvatarDefault.jpg" alt="Descripción de la imagen" class="imagen-redonda">
+                  <h1 id="TypeUser">No disponible</h1>
+                  <h2 id="NameUser">No disponible</h2>
+               </div>
+               <ul class="nav">
+                  <li>
+                     <a href="sgu_index.html" target="_blank" class="open-link">HOME<i class="fa-solid fa-house"></i></a>
+                  </li>
+                  <!-- <li><a href="listadosWin.html" target="_blank">DESCARGAR LISTAS <i class="fa-solid fa-file-import"></i></a></li>
+                     <li><a href="CargarListados.html" target="_blank">CARGAR LISTAS <i class="fa-solid fa-calendar-week"></i></a></li>
+                     <li><a href="Index.html" target="_blank">HOME <i class="fa-solid fa-calendar-week"></i></a></li> -->
+                  <!-- <li><a href="listadosWin.html" target="_blank">DESCARGAR LISTAS <i class="fa-solid fa-file-import"></i></a></li> -->
+                  <!-- <li><a href="Index.html" target="">DASHBOARD <i class="fa-solid fa-calendar-week"></i></a></li> -->
+               </ul>
+            </div>
+            <div id="ListdWin">
+               <form method="post" id="form-alumno" class="form-alumno">
+                  <span id="titelCRUDAlumno" class="boton">REGISTRAR / MODIFICAR ALUMNOS</span>
+                  <!-- Primer nombre, segundo nombre y primer apellido -->
+                  <div class="names-group">
+                     <input placeholder="Primer Nombre" data-info="FirstName_Alumno" type="text" id="primer_nombre" name="primer_nombre" class="input-nombre" required onkeydown="verificarEnterPNombre(event)">
+                     <input  placeholder="Segundo Nombre" data-info="FirstName_AlumnoV2" type="text" id="FirstName_AlumnoV2" name="segundo_nombre" class="input-nombre" onkeydown="verificarEnterPNombre(event)">
+                     <input  placeholder="Primer Apellido" data-info="SecondName_Alumno" type="text" id="SecondName_Alumno" name="primer_apellido" class="input-apellido" required onkeydown="verificarEnterPNombre(event)">
+                     <input  placeholder="Segundo Apellido" data-info="SecondName_AlumnoV2" type="text" id="SecondName_AlumnoV2" name="segundo_apellido" class="input-apellido" onkeydown="verificarEnterPNombre(event)">
+                  </div>
+                  <div class="ids-group">
+                     <input placeholder="Cedula" type="text" id="Cedula" name="Cedula" class="input-Cedula" required onkeydown="verificarEnterCedula(event)">
+                     <select id="Nacionalidad" name="Nacionalidad" class="input-Nacionalidad" required>
+                        <option value="" disabled selected>--Nacionalidad--</option>
+                        <option value="V">Venezolana</option>
+                        <option value="E">Extranjera</option>
+                     </select>
+                     <select id="Escuela_Asignada" name="Escuela_Asignada" class="input-Escuela" required>
+                        <option value="" disabled selected>--Escuela Asignada--</option>
+                        <option value="117">MEDICINA</option>
+                        <option value="112">BIONALISIS</option>
+                        <option value="157">ENFERMERIA (TSU)</option>
+                        <option value="115">ENFERMERIA (LIC)</option>
+                        <option value="166">REG. y EST. DE SALUD (TSU)</option>
+                        <option value="165">TERAPIA PSICOSOCIAL (TSU)</option>
+                        <option value="164">IMAGENOLOGIA (TSU)</option>
+                        <option value="163">HISTOTECNOLOGIA (TSU)</option>
+                        <option value="161">CITOTECNOLOGIA (TSU)</option>
+                        <option value="162">TEC.CARDIOPULMONAR (TSU)</option>
+                        <option value="172">PSICOLOGIA (LIC)</option>
+                        <option value="171">FISIOTERAPIA (LIC)</option>
+                     </select>
+                     <select  id="modo_ingreso" name="modo_ingreso" class="input-ModalidadIngreso" required>
+                        <option value="" disabled selected>--Modo de Ingreso--</option>
+                        <option value="BACHILLERES INDIGENAS">BACHILLERES INDIGENAS</option>
+                        <option value="CONVENIO">CONVENIO</option>
+                        <option value="CNU">CNU</option>
+                        <option value="CURSO DE SELECCION">CURSO DE SELECCION</option>
+                        <option value="DIVERSIDAD FUNCIONAL">DIVERSIDAD FUNCIONAL</option>
+                        <option value="MERITOS EXCEPCIONALES">MERITOS EXCEPCIONALES</option>
+                        <option value="OPSU">OPSU</option>
+                        <option value="PIA">PIA</option>
+                        <option value="PROG. ALEJO ZULOAGA">PROG. ALEJO ZULOAGA</option>
+                        <option value="OTRO">OTRO</option>
+                     </select>
+                  </div>
+                  <div class="infoPersonal-group">
+                     <select  id="Genero" name="Genero" class="input-Genero" required>
+                        <option value="" disabled selected>--Genero--</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                     </select>
+                     <select  id="Estado_Civil" name="Estado_Civil" class="input-EstadoCivil" required>
+                        <option value="" disabled selected>--Estado Civil--</option>
+                        <option value="SOLTERO">SOLTERO</option>
+                        <option value="CASADO">CASADO</option>
+                        <option value="VIUDO">VIUDO</option>
+                        <option value="DIVORCIADO">DIVORCIADO</option>
+                        <option value="OTRO">OTRO</option>
+                     </select>
+                     <input placeholder="DOB" type="text" id="Fecha_Nacimiento" name="Fecha_Nacimiento" class="input-DOB" required>
+                     <input type="text" id="Pais_Origen" class="input-PaisOrigen" required name="Pais_Origen" list="Paises_options" placeholder="Pais Origen">
+                     <datalist id="Paises_options"></datalist>
+                  </div>
+                  <div class="ubicacion-group">
+                     <input type="text" id="Estado_Actual" class="input-EstadoActual" required name="Estado_Actual" list="Estados_options" placeholder="Estado de Residencia">
+                     <datalist id="Estados_options"></datalist>
+                     <input placeholder="Direccion" type="text" id="Direccion" name="Direccion" class="input-Direccion" required>
+                  </div>
+                  <div class="contactos-group">
+                     <input type="text" id="Tel_Local" class="input-TelLocal" required name="Tel_Local" placeholder="Telefono Local">
+                     <input type="text" id="Tel_Celular" class="input-TelCelular" required name="Tel_Celular" placeholder="Telefono Celular">
+                     <input type="email" id="E_mail" class="input-Email" required name="E_mail" placeholder="Correo Electronico">
+                  </div>
+                  <input type="text" id="Observaciones" placeholder="Observaciones" required style="position: relative; left: -8px; top:450px;  width: 695px; margin: 0 auto; display: block; border: 1px solid #ccc; border-radius: 5px; padding: 10px; font-size: 16px; outline: none;">
+                  <div class="status-group">
+                     <div class="estatus-alumno">
+                        <h3>Estatus Alumno:</h3>
+                        <div>
+                           <input type="radio" id="estatusActivo" name="estatusAlumno" value="0" required>
+                           <label for="estatusActivo">Activo</label>
+                        </div>
+                        <div>
+                           <input type="radio" id="estatusInactivo" name="estatusAlumno" value="1" required>
+                           <label for="estatusInactivo">Inactivo</label>
+                        </div>
+                     </div>
+                     <div class="tipo-alumno">
+                        <h3>Tipo Alumno:</h3>
+                        <div>
+                           <input type="radio" id="tipoNuevo" name="tipoAlumno" value="1" required>
+                           <label for="tipoNuevo">Nuevo</label>
+                        </div>
+                        <div>
+                           <input type="radio" id="tipoRegular" name="tipoAlumno" value="3" required>
+                           <label for="tipoRegular">Regular</label>
+                        </div>
+                        <div>
+                           <input type="radio" id="tipoGraduado" name="tipoAlumno" value="2" required>
+                           <label for="tipoGraduado">Graduado</label>
+                        </div>
+                     </div>
+                     <div id="periodo-ingreso">
+                        <input type="text" id="ano_ingreso" placeholder="Año Ingr." required list="anosList">
+                        <datalist id="anosList">
+                           <!-- Los años se generarán mediante JavaScript -->
+                        </datalist>
+                        <select id="periodo_ingreso" required>
+                           <option value="" disabled selected>--Periodo Ingreso-- </option>
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="container">
+                     <button id="btnEscanear" type="button">Escanear QR</button>
+                     <div id="overlay"></div>
+                     <!-- Modal de confirmación -->
+                     <div id="confirmMessage">
+                        <p>¿Estás seguro de que deseas cargar el archivo?</p>
+                        <button id="confirmUpload">Confirmar</button>
+                        <button id="cancelUpload">Cancelar</button>
+                     </div>
+                     <input type="file" id="fileInput" style="display:none;" />
+                     <!-- Botón para cargar archivo -->
+                     <button id="btnCargar" type="button">Cargar Listado</button>
+                     <!-- Modal para mostrar los errores -->
+                     <div id="errorModalERROR" class="modalERROR">
+                        <div class="modal-contentERROR">
+                           <span class="close-btnERROR">&times;</span>
+                           <h2>NOTA INFORMATIVA <br><br></h2>
+                           <div id="errorMessagesERROR"></div>
+                        </div>
+                     </div>
+                     <button id="btnTempReg" type="button">Activar Edicion</button>
+                     <button id="btnGuardar" type="submit" class="bloqueado" data-info="deshabilitado">Guardar</button>
+                     <!-- type="button" -->
+                     <button id="btnLimpiar" type="button">Limpiar</button>
+                     <div id="contenedorEscaneo" style="display: none;">
+                        <div id="reader" style="width: 400px; height: 350px;"></div>
+                     </div>
+                  </div>
+                  <div id="modalResultados" style="display:none;">
+                     <div id="modalContent">
+                        <h3>Selecciona un Alumno</h3>
+                        <ul id="resultadoLista"></ul>
+                        <button onclick="cerrarModal()">Cerrar</button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </main>
+      </div>
+      <input type="hidden" id="username_Log" value="">
+      <input type="hidden" id="password_Log" value="">
+      <input type="hidden" id="last_log_user" value="">
+   </body>
+</html>
